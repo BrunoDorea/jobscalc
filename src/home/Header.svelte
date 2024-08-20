@@ -1,4 +1,6 @@
 <script>
+    import { app } from "../store.js"
+
     let freeHours = 2
     let profile = {
         name: "Bruno Henrique",
@@ -10,9 +12,13 @@
         progress: 1,
         done: 1,
     }
+
+    function handlePage() {
+        $app.page = 'profile'
+    }
 </script>
 
-<header class="page-header bg-gray-700 text-white p-4 pb-8">
+<header class="page-header bg-gray-950 text-white p-8">
     <div class="max-w-4xl mx-auto">
         <section
             id="top"
@@ -30,6 +36,7 @@
                 {/if}
             </span>
             <button
+                on:click={handlePage}
                 id="avatar-profile"
                 class="flex items-center gap-4 hover:text-orange-400 transition-all"
             >
