@@ -1,5 +1,12 @@
 <script>
+    import { app } from "../store"
+
     export let job
+
+    function goToProject() {
+        $app.currentProject = job
+        $app.page = 'project'
+    }
 </script>
 
 <div
@@ -35,6 +42,7 @@
     <div class="actions column flex gap-2">
         <p class="sr-only">Ações</p>
         <button 
+            on:click={goToProject}
             data-id={job.id}
             class="border border-gray-200 p-2 rounded hover:bg-gray-100 transition-all"
             title="Editar Job"

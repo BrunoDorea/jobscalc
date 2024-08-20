@@ -13,8 +13,12 @@
         done: 1,
     }
 
-    function handlePage() {
+    function goToProfile() {
         $app.page = 'profile'
+    }
+
+    function goToProject() {
+        $app.page = 'project'
     }
 </script>
 
@@ -36,7 +40,7 @@
                 {/if}
             </span>
             <button
-                on:click={handlePage}
+                on:click={goToProfile}
                 id="avatar-profile"
                 class="flex items-center gap-4 hover:text-orange-400 transition-all"
             >
@@ -73,6 +77,7 @@
                 </div>
             </div>
             <button
+                on:click={goToProject}
                 class="button orange uppercase flex gap-4 bg-orange-400 h-fit px-3 py-2 rounded items-center hover:brightness-110 transition-all"
             >
                 <span class="bg-opacity-10 bg-white rounded p-0.5">

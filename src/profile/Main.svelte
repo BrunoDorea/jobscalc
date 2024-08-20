@@ -1,4 +1,6 @@
 <script>
+    import Aside from "../parts/Aside.svelte"
+
     let profile = {
         name: "Bruno Henrique",
         avatar: "https://github.com/brunodorea.png",
@@ -14,7 +16,7 @@
 </script>
 
 <div class="container animate-up delay-2 flex justify-between min-w-full p-12">
-    <aside class="card max-w-80 bg-white border border-gray-200 p-16 rounded">
+    <Aside>
         <img
             class="border-4 border-orange-400 rounded-full"
             src={profile.avatar}
@@ -27,7 +29,7 @@
             O valor da sua hora é <br />
             <strong class="text-xl">{profile.valueHour}</strong>
         </p>
-    </aside>
+    </Aside>
 
     <main>
         <h2 class="text-3xl font-medium text-gray-600 border-b pb-4 mb-4">Dados do perfil</h2>
