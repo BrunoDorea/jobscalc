@@ -1,23 +1,18 @@
 <script>
+    import { Calculate } from "../scripts/calculate.js"
+    import { Project } from "../scripts/projects.js"
     import { app } from "../store.js"
 
-    let freeHours = 2
-    let profile = {
-        name: "Bruno Henrique",
-        avatar: "https://github.com/brunodorea.png",
-    }
-
-    let statusCount = {
-        total: 2,
-        progress: 1,
-        done: 1,
-    }
+    $: freeHours = new Calculate($app).freeHours
+    $: statusCount = new Calculate($app).projectsStatus
 
     function goToProfile() {
         $app.page = 'profile'
     }
 
     function goToProject() {
+        $app.currentProject = new Project()
+        $app.projects = [...$app.projects, $app.currentProject]
         $app.page = 'project'
     }
 </script>
@@ -45,13 +40,13 @@
                 class="flex items-center gap-4 hover:text-orange-400 transition-all"
             >
                 <div class="grid text-end">
-                    <strong>{profile.name}</strong>
+                    <strong>{$app.user.name}</strong>
                     <span class="text-xs">Ver perfil</span>
                 </div>
                 <img
                     class="w-14 border-2 border-orange-400 rounded-full"
-                    src={profile.avatar}
-                    alt={profile.name}
+                    src={$app.user.avatar}
+                    alt={$app.user.name}
                 />
             </button>
         </section>
