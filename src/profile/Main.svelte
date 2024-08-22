@@ -8,7 +8,7 @@
     $: debouncedAutosave($app)
 </script>
 
-<div class="container animate-up delay-2 flex justify-between min-w-full p-12">
+<div class="container animate-up delay-2 flex justify-between max-w-4xl mx-auto p-12">
     <Aside>
         <img
             class="border-4 border-orange-400 rounded-full"
