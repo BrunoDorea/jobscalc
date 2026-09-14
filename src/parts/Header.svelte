@@ -1,7 +1,8 @@
 <script>
     import { app } from '../store.js'
 
-    export let title
+    /** @type {string} */
+    export let title = ''
     function goToHome() {
         $app.page = 'home'
     }

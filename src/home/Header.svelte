@@ -11,8 +11,7 @@
     }
 
     function goToProject() {
-        $app.currentProject = new Project()
-        $app.projects = [...$app.projects, $app.currentProject]
+        $app.currentProject = new Project('', 1, 1)
         $app.page = 'project'
     }
 </script>

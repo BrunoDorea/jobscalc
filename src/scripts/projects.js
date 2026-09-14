@@ -1,17 +1,26 @@
 import { dayjs } from './dayjs.js'
 
 export class Project {
-    constructor(name, dailyHours, totalHours) {
-        this.id = crypto.randomUUID()
-        this.name = name || 'Novo projeto',
-        this.dailyHours = dailyHours || 1 ,
-        this.totalHours = totalHours || 1,
-        this.createdAt = new Date()
+    /**
+     * @param {string} [name]
+     * @param {number} [dailyHours]
+     * @param {number} [totalHours]
+     * @param {string} [id]
+     * @param {Date | string} [createdAt]
+     */
+    constructor(name = 'Novo projeto', dailyHours = 1, totalHours = 1, id = crypto.randomUUID(), createdAt = new Date()) {
+        this.id = id || crypto.randomUUID()
+        this.name = name || 'Novo projeto'
+        this.dailyHours = Number(dailyHours) || 1
+        this.totalHours = Number(totalHours) || 1
+        this.createdAt = new Date(createdAt)
     }
     
     get remainingDays() {
-        const totalDays = Math.ceil(this.totalHours / this.dailyHours)
-        const daysPassed = dayjs().diff(this.createdAt, 'day')
+        const daily = Number(this.dailyHours) || 1
+        const total = Number(this.totalHours) || 0
+        const totalDays = Math.ceil(total / daily)
+        const daysPassed = dayjs().startOf('day').diff(dayjs(this.createdAt).startOf('day'), 'day')
         return totalDays - daysPassed
     }
 
@@ -20,8 +29,6 @@ export class Project {
     }
     
     get deadline() {
-        return dayjs()
-            .add(this.remainingDays, 'day')
-            .diff(this.createdAt, 'day')
+        return dayjs(this.createdAt).add(Math.ceil(Number(this.totalHours) / (Number(this.dailyHours) || 1)), 'day')
     }
 }
